@@ -1,9 +1,9 @@
 
 let boxlearners = [];
 let boxdraw = [];
+let randomItem;
 
 // this function for add learners
-
 function addlearners() {
     
     let i;
@@ -24,17 +24,28 @@ function addlearners() {
     document.getElementById("userList").innerHTML = res;
 }
 
-// this function for draw learners
 
-function drawlearners () {
-    var randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-    console.log(randomItem);
+// delete learners
+function draw (rand) {
+    var draw = rand.indexOf();
+    console.log(draw);
+
+
+    if (rand == boxlearners)
 
 }
 
 
-// this function for read learners
+// this function for draw learners
+function drawlearners () {
+    randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
+    // draw(randomItem);
+    randomItem.indexOf()
+    console.log(randomItem);
+}
 
+
+// this function for read learners
 function readelearners () {
     let j;
     let res = "";
