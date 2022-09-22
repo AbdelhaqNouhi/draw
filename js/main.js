@@ -12,7 +12,7 @@ function addlearners() {
     let learners = document.getElementById('add').value;
     if (learners) {
         boxlearners.push(learners)
-        console.log(boxlearners);
+        // console.log(boxlearners);
 
         for (i = 0; i < boxlearners.length; i++) {
             res += boxlearners[i] + "</br>";
@@ -25,23 +25,29 @@ function addlearners() {
 }
 
 
-// delete learners
-function draw (rand) {
-    var draw = rand.indexOf();
-    console.log(draw);
-
-
-    if (rand == boxlearners)
-
+// this function for draw learners
+function drawlearners() {
+    randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
+    draw(randomItem);
 }
 
 
-// this function for draw learners
-function drawlearners () {
-    randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-    // draw(randomItem);
-    randomItem.indexOf()
-    console.log(randomItem);
+// delete learners
+function draw (rand) {
+    let i;
+    let res ="";
+    let index = (boxlearners.indexOf(rand));
+    // console.log(rand);
+    // console.log(index);
+
+    for (i=0; i<boxlearners.length; i++) {
+        if (boxlearners[index] == boxlearners[i]) {
+            res += boxlearners[index] + "</br>";
+            boxlearners.splice(index, 1);
+            console.log("t", boxlearners);
+        }
+    }
+    document.getElementById("draw").innerHTML = res;
 }
 
 
