@@ -1,6 +1,7 @@
 
 let boxlearners = [];
 let boxdraw = [];
+let res = [];
 let randomItem;
 
 // this function for add learners
@@ -35,19 +36,24 @@ function drawlearners() {
 // delete learners
 function draw (rand) {
     let i;
-    let res ="";
+    
     let index = (boxlearners.indexOf(rand));
     // console.log(rand);
     // console.log(index);
 
     for (i=0; i<boxlearners.length; i++) {
         if (boxlearners[index] == boxlearners[i]) {
-            res += boxlearners[index] + "</br>";
+            res.push(boxlearners[index]) ;
             boxlearners.splice(index, 1);
-            console.log("t", boxlearners);
+            console.log("t", res);
         }
     }
-    document.getElementById("draw").innerHTML = res;
+    let student_create_p = document.createElement("p")
+    const node = document.createTextNode(rand)
+    student_create_p.appendChild(node)
+
+    document.getElementById("draw").append(student_create_p);
+    document.getElementById("userList").innerHTML = boxlearners;
 }
 
 

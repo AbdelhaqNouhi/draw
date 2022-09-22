@@ -1,5 +1,7 @@
-.container {
-    
+* {
+    margin: 0%;
+    padding: 0%;
+    border-radius: 0%;  
 }
 
 .header {
@@ -49,4 +51,31 @@ button {
 h4 {
     margin: 0%;
     padding: 0%;
+}
+
+.apprenants {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 20%;
+    background-color: #406882;
+    color: white;
+}
+
+.draw {
+    align-items: center;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    border: none;
+    border-radius: 0.5rem;
+    width: 20%;
+    color: white;
+    background-color: #406882;
+}
+h3 {
+    color: black;
 }
