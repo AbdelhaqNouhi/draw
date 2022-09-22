@@ -38,8 +38,6 @@ function draw (rand) {
     let i;
     
     let index = (boxlearners.indexOf(rand));
-    // console.log(rand);
-    // console.log(index);
 
     for (i=0; i<boxlearners.length; i++) {
         if (boxlearners[index] == boxlearners[i]) {
