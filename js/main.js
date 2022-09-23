@@ -61,10 +61,18 @@ const addtopic = async () => {
 
 // this function for read learners
 const readtopic = async () => {
-    // document.getElementById('draw');
     
-    await axios.get('http://localhost:7000/data'); {
-        console.log('read');
+    const res = await axios.get('http://localhost:7000/data'); {
+        const data = await res.data;
+        if (data) {
+            console.log(data);
+            boxlearners = data;
+            console.log(boxlearners); 
+        } else {
+            console.log('error');
+        }
+        
+        document.getElementById("draw").innerHTML = data.name;
     }
 }
 
