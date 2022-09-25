@@ -22,7 +22,6 @@ const addtopic = async () => {
         .catch(function (error) {
             console.log(error);
         });
-    // readtopic();
 }
 
 // this function for read learners
@@ -52,12 +51,12 @@ const readtopic = async () => {
 // this function for draw learners
 function drawtopic() {
     const randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-    draw(randomItem)
+    showdrawtopic(randomItem)
 }
 
 
 // delete learners
-function draw (rand) {
+function showdrawtopic (rand) {
 
     let i;
     
