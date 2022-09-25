@@ -52,51 +52,28 @@ const readtopic = async () => {
 // this function for draw learners
 function drawtopic() {
     const randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-    console.log(randomItem);
-    console.log('rrrr');
+    draw(randomItem)
 }
 
 
 // delete learners
 function draw (rand) {
+    console.log("rand", rand);
     let i;
     
     let index = (boxlearners.indexOf(rand));
     
     for (i=0; i<boxlearners.length; i++) {
-        console.log('rrrr');
         if (boxlearners[index] == boxlearners[i]) {
             res.push(boxlearners[index]) ;
             boxlearners.splice(index, 1);
             console.log("t", res);
         }
     }
-    // let student_create_p = document.createElement("p")
-    // const node = document.createTextNode(rand)
-    // student_create_p.appendChild(node)
-
-    // document.getElementById("draw").append(student_create_p);
+    let student_create_p = document.createElement("p")
+    const node = document.createTextNode(rand)
+    student_create_p.appendChild(node)
+    
+    document.getElementById("draw").append(student_create_p);
     // document.getElementById("draw").innerHTML = res;
 }
-
-
-// this function for read learners
-// function readelearners () {
-//     let j;
-//     let res = "";
-
-//     let tirage = document.getElementById('draw').value;
-//     if (tirage) {
-//         boxdraw.puch(tirage)
-//         console.log(boxdraw);
-
-//         for (j = 0; j<boxdraw.length; j++) {
-//             res += boxdraw[i] + "</br>";
-//         }
-//     }
-//     else {
-//         console.log("???????????");
-//     }
-
-//     document.getElementById("draw").innerHTML = res;
-// }
