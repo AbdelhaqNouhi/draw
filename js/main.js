@@ -58,22 +58,25 @@ function drawtopic() {
 
 // delete learners
 function draw (rand) {
-    console.log("rand", rand);
+
     let i;
     
     let index = (boxlearners.indexOf(rand));
     
     for (i=0; i<boxlearners.length; i++) {
         if (boxlearners[index] == boxlearners[i]) {
-            res.push(boxlearners[index]) ;
+            // console.log('index', boxlearners[index]);
+            // console.log('box', boxlearners[i]);
             boxlearners.splice(index, 1);
+            res.push(boxlearners[index]) ;
             console.log("t", res);
+            // console.log(boxlearners);
         }
     }
+    
     let student_create_p = document.createElement("p")
     const node = document.createTextNode(rand)
     student_create_p.appendChild(node)
     
     document.getElementById("draw").append(student_create_p);
-    // document.getElementById("draw").innerHTML = res;
 }
