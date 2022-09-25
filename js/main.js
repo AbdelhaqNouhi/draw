@@ -5,6 +5,7 @@ let res = [];
 let randomItem;
 
 
+
 // this function for add learners
 const addtopic = async () => {
     console.log('add');
@@ -21,6 +22,7 @@ const addtopic = async () => {
         .catch(function (error) {
             console.log(error);
         });
+    // readtopic();
 }
 
 // this function for read learners
@@ -33,10 +35,9 @@ const readtopic = async () => {
         const data = await res.data;
 
         if (data) {
-            console.log(data);
+            // console.log(data);
             data.forEach(ele=>{
                 boxlearners.push(ele.name);
-                // console.log("box", boxlearners);
             })
         }
         for (j = 0; j < boxlearners.length; j++) {
@@ -47,33 +48,36 @@ const readtopic = async () => {
 }
 
 
+
 // this function for draw learners
-// function drawlearners() {
-//     randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-//     draw(randomItem);
-// }
+function drawtopic() {
+    const randomItem = boxlearners[Math.floor(Math.random() * boxlearners.length)];
+    console.log(randomItem);
+    console.log('rrrr');
+}
 
 
 // delete learners
-// function draw (rand) {
-//     let i;
+function draw (rand) {
+    let i;
     
-//     let index = (boxlearners.indexOf(rand));
+    let index = (boxlearners.indexOf(rand));
+    
+    for (i=0; i<boxlearners.length; i++) {
+        console.log('rrrr');
+        if (boxlearners[index] == boxlearners[i]) {
+            res.push(boxlearners[index]) ;
+            boxlearners.splice(index, 1);
+            console.log("t", res);
+        }
+    }
+    // let student_create_p = document.createElement("p")
+    // const node = document.createTextNode(rand)
+    // student_create_p.appendChild(node)
 
-//     for (i=0; i<boxlearners.length; i++) {
-//         if (boxlearners[index] == boxlearners[i]) {
-//             res.push(boxlearners[index]) ;
-//             boxlearners.splice(index, 1);
-//             console.log("t", res);
-//         }
-//     }
-//     let student_create_p = document.createElement("p")
-//     const node = document.createTextNode(rand)
-//     student_create_p.appendChild(node)
-
-//     document.getElementById("draw").append(student_create_p);
-//     document.getElementById("userList").innerHTML = boxlearners;
-// }
+    // document.getElementById("draw").append(student_create_p);
+    // document.getElementById("draw").innerHTML = res;
+}
 
 
 // this function for read learners
