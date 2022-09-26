@@ -1,18 +1,4 @@
 {
-  "users": [
-    {
-      "name": "tttttttttt",
-      "id": 4
-    }
-  ],
-  "sujet": [
-    {
-      "name": "nouhi",
-      "id": 8
-    },
-    {
-      "name": "Et sed provident ni",
-      "id": 10
-    }
-  ]
+  "users": [],
+  "sujet": []
 }

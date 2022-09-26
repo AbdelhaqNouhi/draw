@@ -8,22 +8,22 @@ let randomItem;
 
 // this function for add learners
 function addtopic () {
-
+    
     const topic = document.getElementById('addtopic');
     const taketopic = topic.value;
-
+    
     if (taketopic) {
         fetch('http://localhost:7000/users', {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify({
-                    name: taketopic,
-                })
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                name: taketopic,
             })
-            .then(res => res.json())
-            .then(out => console.log(out))  
+        })
+        .then(res => res.json())
+        .then(out => console.log(out))
             // .then(appel => this.readtopic())
     }
     else {
@@ -103,15 +103,14 @@ function Randem() {
 
 // delete users
 
-function deleteuser  (id) {
-    console.log('yyyyyyyyyyyyyyyyyyyyyyy',id);
-    fetch('http://localhost:7000/users/' +id, {
+function deleteuser  (id_user) {
+    fetch('http://localhost:7000/users/' +id_user, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: id
+            id: id_user
         })
     })
     .then(res => console.log(res))
@@ -119,7 +118,6 @@ function deleteuser  (id) {
 
 //  delete sujet
 function deletsujet (id) {
-    console.log(id);
     fetch ('http://localhost:7000/sujet/' + id,{
         method: 'DELETE',
         headers: {
