@@ -1,9 +1,8 @@
 
 let boxlearners = [];
 let boxsujet = [];
-let res = [];
-let randomItem;
-
+let random_users = [];
+let random_sujet = [];
 
 
 // this function for add learners
@@ -92,12 +91,46 @@ readsujet();
 
 // this function for draw learners
 function Randem() {
-    const randomuser = boxlearners[Math.floor(Math.random() * boxlearners.length)];
+    const randomusers = boxlearners[Math.floor(Math.random() * boxlearners.length)];
     const randomsujet = boxsujet[Math.floor(Math.random() * boxsujet.length)];
-    console.log('users', randomuser);
-    console.log('sujet', randomsujet);
-    deleteuser(randomuser.id)
-    deletsujet(randomsujet.id)
+    
+    random_users.push(randomusers.name);
+    random_sujet.push(randomsujet.name);
+
+    read_random_users();
+    read_random_sujet();
+
+    deleteuser(randomusers.id);
+    deletsujet(randomsujet.id);
+    // document.getElementById("sujetrandom").innerHTML = randomsujet.name;
+    // document.getElementById("userrandom").innerHTML = randomusers.name;
+
+}
+
+function read_random_users () {
+    let i;
+
+        // random_users.forEach(ele => {
+        //     document.getElementById("userrandom").innerHTML = ele;
+        // })
+
+        for(i=0; i<random_users.length; i++) {
+            document.getElementById("sujetrandom").innerHTML = random_users;
+        }
+    
+    
+}
+
+function read_random_sujet () {
+    let i;
+        // random_sujet.forEach(ele => {
+        //     document.getElementById("sujetrandom").innerHTML = ele;
+        // })
+
+        for(i=0; i<random_sujet.length; i++) {
+            document.getElementById("userrandom").innerHTML = random_sujet;
+        }
+
 }
 
 
@@ -114,41 +147,20 @@ function deleteuser  (id_user) {
         })
     })
     .then(res => console.log(res))
+
 }
 
 //  delete sujet
-function deletsujet (id) {
-    fetch ('http://localhost:7000/sujet/' + id,{
+
+function deletsujet (id_sujet) {
+    fetch ('http://localhost:7000/sujet/' + id_sujet,{
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: id
+            id: id_sujet
         })
     })
     .then(res => console.log(res))
 }
-
-// function deleteuser(rand) {
-
-//     let i;
-
-//     let index = (boxlearners.indexOf(rand));
-
-//     for (i = 0; i < boxlearners.length; i++) {
-//         if (boxlearners[index] == boxlearners[i]) {
-//             // console.log('index', boxlearners[index]);
-//             // console.log('box', boxlearners[i]);
-//             boxlearners.splice(index, 1);
-//             res.push(boxlearners[index]);
-//             console.log("t", res);
-//             // console.log(boxlearners);
-//         }
-//     }
-//     let student_create_p = document.createElement("p")
-//     const node = document.createTextNode(rand)
-//     student_create_p.appendChild(node)
-
-//     document.getElementById("draw").append(student_create_p);
-// }

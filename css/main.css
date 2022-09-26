@@ -6,10 +6,12 @@
 
 
 .header {
+    background-color: #1A374D;
     display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 0rem 2rem;
+    justify-content: center;
+    padding: 1rem;
+    position: fixed;
+    width: 100%;
 }
 
 .nav {
@@ -32,7 +34,7 @@
     background-color: #B1D0E0;
     display: flex;
     justify-content: space-evenly;
-    margin: 4rem 15rem auto;
+    margin: 8rem 20rem auto;
     padding: 2rem;
     border: none;
     border-radius: 0.5rem;
@@ -123,4 +125,5 @@ h3 {
 .btn_randem {
     width: 10rem;
     margin-top: auto;
+    cursor: pointer;
 }

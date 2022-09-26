@@ -10,14 +10,7 @@
 </head>
 <body>
     <div class="header">
-        <div class="logo">
-            <h1>Robert Noyce</h1>
-        </div>
-        <div class="nav">
-            <a href="#">Home</a>
-            <a href="#">Home</a>
-            <a href="#">Home</a>
-        </div>
+        <h1>Robert Noyce</h1>
     </div>
     <div class="container">
         <div class="body">
@@ -34,7 +27,7 @@
             </div>
 
             <!-- Randem betwen users and sujet -->
-                <button class="btn_randem" onclick="Randem()">Randem</button>
+                <button type="button" class="btn_randem" onclick="Randem()">Randem</button>
 
             <div class="form">
                 <h4>sujet</h4>
@@ -55,9 +48,9 @@
                 <strong>sujet</strong>
                 <strong>date</strong>
             </div>
-            <div class="title" v-for="list in lists" :key="list.id">
-                <span>eeee </span>
-                <span>tttttt</span>
+            <div class="title">
+                <span id="userrandom"></span>
+                <span id="sujetrandom"></span>
                 <span>ggggg</span>
             </div>
         </div>
