@@ -10,7 +10,7 @@ let randomItem;
 const addtopic = async () => {
     console.log('add');
 
-    const topic = document.getElementById('add');
+    const topic = document.getElementById('addtopic');
     const taketopic = topic.value;
 
     await axios.post('http://localhost:7000/data', {
@@ -43,6 +43,29 @@ const readtopic = async () => {
             t += boxlearners[j] + "</br>";
         }
         document.getElementById("userList").innerHTML = t;
+    }
+}
+
+
+
+const addsujet = async () => {
+
+    const sujet = document.getElementById('sujet');
+    const takesujet = sujet.value
+    console.log(takesujet);
+
+    const res = await fetch('http://localhost:7000/sujet', {
+        method: 'POST',
+        dody: JSON.stringify({
+            name: takesujet,
+        }),
+    });
+    const data = await res.json();
+    if (data) {
+        console.log('data', data);
+    }
+    else {
+        console.log('error');
     }
 }
 
