@@ -7,7 +7,7 @@ let randomItem;
 
 
 // this function for add learners
-const addtopic = async function () {
+function addtopic () {
 
     const topic = document.getElementById('addtopic');
     const taketopic = topic.value;
@@ -32,14 +32,14 @@ const addtopic = async function () {
 }
 
 // this function for read learners
-const readtopic = async function () {
-    await fetch('http://localhost:7000/users')
+function readtopic () {
+    fetch('http://localhost:7000/users')
     .then(res=> res.json())
     .then(data => {
         if (data) {
             data.forEach(ele => {
                 boxlearners.push(ele);
-                document.getElementById("userList").innerHTML = boxlearners;
+                document.getElementById("userList").innerHTML += ele.name;
             })
         }
     })
@@ -49,7 +49,7 @@ readtopic()
 
 
 
-const addsujet = async function () {
+function addsujet () {
 
     const sujet = document.getElementById('sujet');
     const takesujet = sujet.value
@@ -72,7 +72,7 @@ const addsujet = async function () {
     }
 }
 
-const readsujet = async function () {
+function readsujet () {
     fetch('http://localhost:7000/sujet')
 
         .then(res => res.json())
@@ -81,7 +81,7 @@ const readsujet = async function () {
                 // console.log(data);
                 data.forEach(ele => {
                     boxsujet.push(ele);
-                    document.getElementById("sujetlist").innerHTML = boxsujet;
+                    document.getElementById("sujetlist").innerHTML += ele.name;
                 })
             }
         })
@@ -94,25 +94,42 @@ readsujet();
 function Randem() {
     const randomuser = boxlearners[Math.floor(Math.random() * boxlearners.length)];
     const randomsujet = boxsujet[Math.floor(Math.random() * boxsujet.length)];
-    console.log('users', randomuser.name);
-    console.log('sujet', randomsujet.name);
-
+    console.log('users', randomuser);
+    console.log('sujet', randomsujet);
     deleteuser(randomuser.id)
+    deletsujet(randomsujet.id)
 }
 
 
-// delete learners
+// delete users
 
-const deleteuser =  async function (id) {
-    fetch('http://localhost:7000/users', {
+function deleteuser  (id) {
+    console.log('yyyyyyyyyyyyyyyyyyyyyyy',id);
+    fetch('http://localhost:7000/users/' +id, {
         method: 'DELETE',
         headers: {
             "Content-Type": "application/json",
         },
         body: JSON.stringify({
-            id: id,
+            id: id
         })
     })
+    .then(res => console.log(res))
+}
+
+//  delete sujet
+function deletsujet (id) {
+    console.log(id);
+    fetch ('http://localhost:7000/sujet/' + id,{
+        method: 'DELETE',
+        headers: {
+            "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+            id: id
+        })
+    })
+    .then(res => console.log(res))
 }
 
 // function deleteuser(rand) {
