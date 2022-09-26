@@ -24,30 +24,45 @@
             <div class="form">
                 <h4>username</h4>
                 <input id="addtopic" type="text" placeholder="username">
-                <button onclick="addtopic()">add</button>
-                <button onclick="readtopic()">read</button>
-                <button onclick="drawtopic()">draw</button>
+                <button onclick="addtopic()">Add User</button>
+                <button onclick="readtopic()">Read User</button>
+
+                <div class="apprenants">
+                    <div>
+                        <h3>Apprenents</h3>
+                    </div>
+                    <span id="userList"></span>
+                </div>
             </div>
+
+            <!-- Randem betwen users and sujet -->
+                <button class="btn_randem" onclick="Randem()">Randem</button>
+
             <div class="form">
                 <h4>sujet</h4>
                 <input id="sujet" type="text" placeholder="sujet">
-                <button onclick="addsujet()">sujet</button>
-                <!-- <button onclick="readtopic()">read</button>
-                <button onclick="drawtopic()">draw</button> -->
+                <button onclick="addsujet()">Add Sujet</button>
+                <button onclick="readsujet()">Read Sujet</button>
+
+                <div class="draw">
+                    <div>
+                        <h3>sujetlist</h3>
+                    </div>
+                    <span id="sujetlist"></span>
+                </div>
             </div>
         </div>
-        <div class="show">
-            <div class="apprenants">
-                <div>
-                    <h3>Apprenents</h3>
-                </div>
-                <span id="userList"></span>
+
+        <div class="res">
+            <div class="title">
+                <strong>tapic</strong>
+                <strong>sujet</strong>
+                <strong>date</strong>
             </div>
-            <div class="draw">
-                <div>
-                    <h3>Randem</h3>
-                </div>
-                <span id="draw"></span>
+            <div class="title" v-for="list in lists" :key="list.id">
+                <span>eeee</span>
+                <span>tttttt</span>
+                <span>ggggg</span>
             </div>
         </div>
     </div>

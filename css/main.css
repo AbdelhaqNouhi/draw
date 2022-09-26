@@ -21,6 +21,7 @@
 .container {
     width: 100%;
     display: flex;
+    gap: 2rem;
     justify-content: center;
     flex-direction: column;
     align-items: center;
@@ -30,8 +31,8 @@
     width: 60%;
     background-color: #B1D0E0;
     display: flex;
-    justify-content: space-around;
-    margin: 4rem 15rem;
+    justify-content: space-evenly;
+    margin: 4rem 15rem auto;
     padding: 2rem;
     border: none;
     border-radius: 0.5rem;
@@ -95,8 +96,31 @@ h4 {
     border: none;
     border-radius: 0.5rem;
     color: white;
-    background-color: #406882;
+    background-color: #6998AB;
 }
 h3 {
     color: black;
+}
+
+.res {
+    border-radius: 0.5rem;
+    height: 100%;
+    width: 65%;
+    background-color: #6998ab;
+
+}
+.title {
+    padding: 1rem 0;
+    border: 1px solid white;
+    border-radius: 0.5rem;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    width: 100%;
+    place-items: center;
+    text-align: center;
+}
+
+.btn_randem {
+    width: 10rem;
+    margin-top: auto;
 }
