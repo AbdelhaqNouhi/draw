@@ -1,8 +1,8 @@
 
-let boxlearners = [];
-let boxsujet = [];
-let random_users = [];
-let random_sujet = [];
+let box_users = [];
+let box_sujet = [];
+let random_users_list = [];
+let random_sujet_list = [];
 
 let d = new Date();
 let nextDay = d.getDate()
@@ -10,11 +10,11 @@ let nexMonth = d.getMonth() + 1
 let nextYear = d.getFullYear()
 let date
 let dayoff
-let dayPositionInTheWeek = d.getDay();
+let dayPosition = d.getDay();
 
 
 // this function for add learners
-function addtopic () {
+function add_users () {
     
     const topic = document.getElementById('addtopic');
     const taketopic = topic.value;
@@ -39,24 +39,28 @@ function addtopic () {
 }
 
 // this function for read learners
-function readtopic () {
+function read_users () {
     fetch('http://localhost:7000/users')
     .then(res=> res.json())
     .then(data => {
         if (data) {
             data.forEach(ele => {
-                boxlearners.push(ele);
-                document.getElementById("userList").innerHTML += ele.name;
+                box_users.push(ele);
+                let users = document.createElement("p")
+                const node_users = document.createTextNode(ele.name)
+                users.appendChild(node_users)
+                document.getElementById('userList').append(users)
             })
         }
     })
+    // console.log('users',box_users);
 }
-readtopic()
+read_users();
 
 
 
 
-function addsujet () {
+function add_sujet () {
 
     const sujet = document.getElementById('sujet');
     const takesujet = sujet.value
@@ -79,68 +83,74 @@ function addsujet () {
     }
 }
 
-function readsujet () {
+
+function read_sujet () {
     fetch('http://localhost:7000/sujet')
 
         .then(res => res.json())
         .then(data => {
             if (data) {
-                // console.log(data);
+                console.log(data);
                 data.forEach(ele => {
-                    boxsujet.push(ele);
-                    document.getElementById("sujetlist").innerHTML += ele.name;
+                    box_sujet.push(ele);
+
+                    let sujet = document.createElement("p")
+                    const node_sujet = document.createTextNode(ele.name)
+                    sujet.appendChild(node_sujet)
+                    document.getElementById('sujetlist').append(sujet)
                 })
             }
         })
+        // console.log('sujet', box_sujet);
 } 
-readsujet();
+read_sujet();
 
 
 
 // this function for draw learners
 function Randem() {
-    const randomusers = boxlearners[Math.floor(Math.random() * boxlearners.length)];
-    const randomsujet = boxsujet[Math.floor(Math.random() * boxsujet.length)];
-
+    const random_users = box_users[Math.floor(Math.random() * box_users.length)];
+    const random_sujet = box_sujet[Math.floor(Math.random() * box_sujet.length)];
+    
+    random_users_list.push(random_users.name);
+    random_sujet_list.push(random_sujet.name);
 
     
-    random_users.push(randomusers.name);
-    random_sujet.push(randomsujet.name);
+    deleteuser(random_users.id);
+    deletesujet(random_sujet.id);
 
     read_random_users();
     read_random_sujet();
     Get_Date();
-
-    deleteuser(randomusers.id);
-    deletsujet(randomsujet.id);
-    // document.getElementById("sujetrandom").innerHTML = randomsujet.name;
-    // document.getElementById("userrandom").innerHTML = randomusers.name;
 }
 
 function read_random_users () {
-    // let i;
-
-        random_users.forEach(ele => {
-            document.getElementById("userrandom").innerHTML += ele;
+    
+    if(random_users_list) {
+        random_users_list.forEach(ele => {
+            
+            let users = document.createElement("p")
+            const node_users = document.createTextNode(ele)
+            users.appendChild(node_users)
+            document.getElementById('user_random').append(users)
+            // document.getElementById("userrandom").innerHTML += ele;
         })
-
-        // for(i=0; i<random_users.length; i++) {
-        //     document.getElementById("sujetrandom").innerHTML = random_users;
-        // }
+    }
 }
+
 
 function read_random_sujet () {
-    // let i;
-        random_sujet.forEach(ele => {
-            document.getElementById("sujetrandom").innerHTML += ele;
+
+    if(random_sujet_list) {
+        random_sujet_list.forEach(ele => {
+            
+            let sujet = document.createElement("p")
+            const node_sujet = document.createTextNode(ele)
+            sujet.appendChild(node_sujet)
+            document.getElementById('sujet_random').append(sujet)
         })
-
-        // for(i=0; i<random_sujet.length; i++) {
-        //     document.getElementById("userrandom").innerHTML = random_sujet;
-        // }
-
+    }
 }
-
 
 // delete users
 
@@ -155,12 +165,11 @@ function deleteuser  (id_user) {
         })
     })
     .then(res => console.log(res))
-
 }
 
 //  delete sujet
 
-function deletsujet (id_sujet) {
+function deletesujet (id_sujet) {
     fetch ('http://localhost:7000/sujet/' + id_sujet,{
         method: 'DELETE',
         headers: {
@@ -173,22 +182,26 @@ function deletsujet (id_sujet) {
     .then(res => console.log(res))
 }
 
+//  this function was be get date
 function Get_Date () {
     nextDay++
+
     // skip weekend
-    if (dayPositionInTheWeek < 7) {
-        dayPositionInTheWeek++
-        if (dayPositionInTheWeek == 7) {
-            dayPositionInTheWeek = 0
+    if (dayPosition < 7) {
+        dayPosition++
+        if (dayPosition == 7) {
+            dayPosition = 0
         }
     }
 
-    if (boxlearners.length - 1 >= 0) {
-        if (dayPositionInTheWeek == 6) {
+    // 
+    if (box_users.length - 1 >= 0) {
+        if (dayPosition == 6) {
             dayoff = "dayoff"
             nextDay = nextDay + 2
-            dayPositionInTheWeek = 1
+            dayPosition = 1
         }
+        
         if (nextDay > 31) {
             if (dayoff) {
                 nextDay = 3
@@ -202,14 +215,14 @@ function Get_Date () {
             nexMonth = 1
             nextYear++
         }
-        // skip Public holidays in Morocco
+        // skip Public holidays
         if (((nextDay == 1 || nextDay == 11) && nexMonth == 1) ||
             (nextDay == 1 && nexMonth == 5) ||
             (nextDay == 30 && nexMonth == 7) ||
             ((nextDay == 14 || nextDay == 20 || nextDay == 21) && nexMonth == 8) ||
             ((nextDay == 6 || nextDay == 18) && nexMonth == 11)) {
             nextDay++
-            dayPositionInTheWeek++
+            dayPosition++
         }
 
 
@@ -217,8 +230,8 @@ function Get_Date () {
     }
     date = nextDay + '/' + nexMonth + '/' + nextYear
 
-    let date_create_p = document.createElement("p")
+    let date_create = document.createElement("p")
     const node_date = document.createTextNode(date)
-    date_create_p.appendChild(node_date)
-    document.getElementById('date').append(date_create_p)
+    date_create.appendChild(node_date)
+    document.getElementById('date').append(date_create)
 }
