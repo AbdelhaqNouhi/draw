@@ -4,6 +4,14 @@ let boxsujet = [];
 let random_users = [];
 let random_sujet = [];
 
+let d = new Date();
+let nextDay = d.getDate()
+let nexMonth = d.getMonth() + 1
+let nextYear = d.getFullYear()
+let date
+let dayoff
+let dayPositionInTheWeek = d.getDay();
+
 
 // this function for add learners
 function addtopic () {
@@ -93,43 +101,43 @@ readsujet();
 function Randem() {
     const randomusers = boxlearners[Math.floor(Math.random() * boxlearners.length)];
     const randomsujet = boxsujet[Math.floor(Math.random() * boxsujet.length)];
+
+
     
     random_users.push(randomusers.name);
     random_sujet.push(randomsujet.name);
 
     read_random_users();
     read_random_sujet();
+    Get_Date();
 
     deleteuser(randomusers.id);
     deletsujet(randomsujet.id);
     // document.getElementById("sujetrandom").innerHTML = randomsujet.name;
     // document.getElementById("userrandom").innerHTML = randomusers.name;
-
 }
 
 function read_random_users () {
-    let i;
+    // let i;
 
-        // random_users.forEach(ele => {
-        //     document.getElementById("userrandom").innerHTML = ele;
-        // })
+        random_users.forEach(ele => {
+            document.getElementById("userrandom").innerHTML += ele;
+        })
 
-        for(i=0; i<random_users.length; i++) {
-            document.getElementById("sujetrandom").innerHTML = random_users;
-        }
-    
-    
+        // for(i=0; i<random_users.length; i++) {
+        //     document.getElementById("sujetrandom").innerHTML = random_users;
+        // }
 }
 
 function read_random_sujet () {
-    let i;
-        // random_sujet.forEach(ele => {
-        //     document.getElementById("sujetrandom").innerHTML = ele;
-        // })
+    // let i;
+        random_sujet.forEach(ele => {
+            document.getElementById("sujetrandom").innerHTML += ele;
+        })
 
-        for(i=0; i<random_sujet.length; i++) {
-            document.getElementById("userrandom").innerHTML = random_sujet;
-        }
+        // for(i=0; i<random_sujet.length; i++) {
+        //     document.getElementById("userrandom").innerHTML = random_sujet;
+        // }
 
 }
 
@@ -163,4 +171,54 @@ function deletsujet (id_sujet) {
         })
     })
     .then(res => console.log(res))
+}
+
+function Get_Date () {
+    nextDay++
+    // skip weekend
+    if (dayPositionInTheWeek < 7) {
+        dayPositionInTheWeek++
+        if (dayPositionInTheWeek == 7) {
+            dayPositionInTheWeek = 0
+        }
+    }
+
+    if (boxlearners.length - 1 >= 0) {
+        if (dayPositionInTheWeek == 6) {
+            dayoff = "dayoff"
+            nextDay = nextDay + 2
+            dayPositionInTheWeek = 1
+        }
+        if (nextDay > 31) {
+            if (dayoff) {
+                nextDay = 3
+            }
+            else {
+                nextDay = 1
+            }
+            nexMonth++
+        }
+        if (nexMonth > 12) {
+            nexMonth = 1
+            nextYear++
+        }
+        // skip Public holidays in Morocco
+        if (((nextDay == 1 || nextDay == 11) && nexMonth == 1) ||
+            (nextDay == 1 && nexMonth == 5) ||
+            (nextDay == 30 && nexMonth == 7) ||
+            ((nextDay == 14 || nextDay == 20 || nextDay == 21) && nexMonth == 8) ||
+            ((nextDay == 6 || nextDay == 18) && nexMonth == 11)) {
+            nextDay++
+            dayPositionInTheWeek++
+        }
+
+
+        dayoff = false
+    }
+    date = nextDay + '/' + nexMonth + '/' + nextYear
+
+    let date_create_p = document.createElement("p")
+    const node_date = document.createTextNode(date)
+    date_create_p.appendChild(node_date)
+    document.getElementById('date').append(date_create_p)
 }
