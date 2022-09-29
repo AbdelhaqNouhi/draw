@@ -20,7 +20,7 @@ function add_users () {
     const taketopic = topic.value;
     
     if (taketopic) {
-        fetch('http://localhost:7000/users', {
+        fetch('http://localhost:7000', {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
